@@ -2416,6 +2416,7 @@ Header Styles
 .header__area .header__sidebar__right > li > a {
   position: relative;
   display: block;
+  height: 20px;
 }
 .header__area .header__sidebar__right > li > a i {
   color: #555;
@@ -2429,6 +2430,14 @@ Header Styles
 .header__area .header__sidebar__right > li.wishlist {
   padding-left: 25px;
   padding-right: 25px;
+}
+.header__area .header__sidebar__right > li.icon {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.header__area .header__sidebar__right > li.icon:nth-last-child(1) {
+  padding-left: 15px;
+  padding-right: 0;
 }
 .header__area .header__sidebar__right > li.shopcart > a {
   position: relative;
@@ -2499,7 +2508,7 @@ Header Styles
   display: flex;
   font-size: 14px;
   font-weight: 600;
-  padding: 0 25px;
+  padding: 0 20px;
   text-transform: uppercase;
   transition: all 0.4s ease 0s;
 }
@@ -2510,42 +2519,46 @@ Header Styles
   color: #fff;
 }
 .is-sticky.header__area .header__sidebar__right > li.shop_search > a {
-  /* background: rgba(0, 0, 0, 0) url("images/icons/search_white.png") no-repeat
-    scroll 0 center; */
+  background: rgba(0, 0, 0, 0) url("../images/icons/search_white.png") no-repeat
+    scroll 0 center;
 }
 .is-sticky.header__area .header__sidebar__right > li.wishlist > a {
-  /* background: rgba(0, 0, 0, 0) url("images/icons/button-wishlist_white.png")
-    no-repeat scroll 0 center; */
+  background: rgba(0, 0, 0, 0) url("../images/icons/button-wishlist_white.png")
+    no-repeat scroll 0 center;
 }
 .is-sticky.header__area .header__sidebar__right > li.shopcart > a {
-  /* background: rgba(0, 0, 0, 0) url("images/icons/cart_white.png") no-repeat
-    scroll 0 center; */
+  background: rgba(0, 0, 0, 0) url("../images/icons/cart_white.png") no-repeat
+    scroll 0 center;
 }
 .is-sticky.header__area .header__sidebar__right > li.setting__bar__icon > a {
-  /* background: transparent url("images/icons/icon_setting_white.png") no-repeat
-    scroll left center; */
+  background: transparent url("../images/icons/icon_setting_white.png")
+    no-repeat scroll left center;
 }
-.mainmenu__nav .meninmenu li:first-child a {
+/* .mainmenu__nav .meninmenu li:first-child a {
   padding-left: 0;
+} */
+
+.mainmenu__nav .meninmenu li a:hover {
+  background: #c37454c7;
 }
 .oth-page .mainmenu__nav .meninmenu li a {
   color: #fff;
 }
 .oth-page.header__area .header__sidebar__right > li.shop_search > a {
-  /* background: rgba(0, 0, 0, 0) url("images/icons/search_white.png") no-repeat
-    scroll 0 center; */
+  background: rgba(0, 0, 0, 0) url("../images/icons/search_white.png") no-repeat
+    scroll 0 center;
 }
 .oth-page.header__area .header__sidebar__right > li.wishlist > a {
-  /* background: rgba(0, 0, 0, 0) url("images/icons/button-wishlist_white.png")
-    no-repeat scroll 0 center; */
+  background: rgba(0, 0, 0, 0) url("../images/icons/button-wishlist_white.png")
+    no-repeat scroll 0 center;
 }
 .oth-page.header__area .header__sidebar__right > li.setting__bar__icon > a {
-  /* background: transparent url("images/icons/icon_setting_white.png") no-repeat
-    scroll left center; */
+  background: transparent url("../images/icons/icon_setting_white.png")
+    no-repeat scroll left center;
 }
 .oth-page.header__area .header__sidebar__right > li.shopcart > a {
-  /* background: rgba(0, 0, 0, 0) url("images/icons/cart_white.png") no-repeat
-    scroll 0 center; */
+  background: rgba(0, 0, 0, 0) url("../images/icons/cart_white.png") no-repeat
+    scroll 0 center;
 }
 .oth-page.header__absolute {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
