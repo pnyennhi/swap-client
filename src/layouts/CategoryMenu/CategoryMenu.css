@@ -1,0 +1,17 @@
+.category-menu {
+  background-color: #f1f1f1 !important;
+}
+
+.category-menu .mainmenu__nav {
+  height: 45px !important;
+  justify-content: center;
+}
+
+.mainmenu__nav .meninmenu {
+  width: 100%;
+  position: relative;
+}
+
+.is-sticky .mainmenu__nav .meninmenu li a {
+  color: #333;
+}

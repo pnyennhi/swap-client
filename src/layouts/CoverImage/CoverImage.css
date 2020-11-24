@@ -1,0 +1,14 @@
+/* .cover {
+  margin-top: 65px;
+} */
+.cover-img {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+.cover-btn {
+  position: absolute;
+  bottom: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+}

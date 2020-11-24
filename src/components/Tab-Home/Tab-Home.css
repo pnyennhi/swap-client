@@ -1,0 +1,5 @@
+.product__nav a:hover,
+.product__nav a.active {
+  color: #e59285 !important;
+  transition: none;
+}

@@ -1,0 +1,137 @@
+.checkout_info.address h6 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.checkout_info.address::before {
+  color: #e59285;
+  content: "\f041";
+  font-family: FontAwesome;
+  font-size: 18px;
+  left: 26px;
+  position: absolute;
+}
+.checkout_info.address .title {
+  display: flex;
+  justify-content: space-between;
+}
+.checkout_info.address .title a {
+  color: #e59285;
+}
+.checkout_info.address .title a:hover {
+  text-decoration: underline;
+}
+.product-name {
+  padding: 15px 0 15px 0px;
+}
+.product-th.product-name {
+  padding: 10px 0 0px 40px;
+}
+td.product-name {
+  padding: 15px 0 15px 40px;
+}
+.product-name img {
+  margin-right: 20px;
+}
+.product-price,
+.product-amount {
+  text-align: center;
+}
+.product-price span.amount {
+  font-size: 14px;
+  font-weight: 500;
+}
+.product-total {
+  text-align: right;
+  padding-right: 40px;
+  font-weight: 600;
+}
+.wnro__table th .nobr {
+  font-size: 14px;
+  padding: 0;
+}
+
+.wishlist-table,
+.checkout {
+  box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.wn__checkout__area .wishlist-table {
+  box-shadow: 1px 2px 8px 1px rgba(0, 0, 0, 0.1);
+}
+
+.wn__checkout__area .wishlist-table tr:nth-last-child(1) td {
+  padding-bottom: 25px;
+  /* border-bottom: 1px solid #ccc; */
+}
+
+.total-money {
+  padding: 20px 40px;
+}
+
+.total-money .total-row {
+  margin-bottom: 5px;
+}
+
+.total-money .total-row .price {
+  font-weight: 600;
+}
+
+.total-money .total-row:nth-last-child(1) {
+  margin-top: 20px;
+}
+
+.total-money .total-row .total-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ce7852;
+}
+
+.total-money .total-row .total-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ce7852;
+}
+
+.wnro__table table {
+  border: none;
+}
+.product-th {
+  padding-top: 10px;
+  padding-bottom: 0;
+}
+.btn-order {
+  background-color: #ce7852;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  height: 100%;
+  padding: 0.5em 2em;
+}
+
+.btn-order:hover,
+.btn-order:focus {
+  background-color: #c26c47;
+  color: #fff;
+  box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.recipient-item {
+  background: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.recipient-item.selected {
+  background: #f5f5f5;
+  border-top: 3px solid #e59285;
+  box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.default-tag {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}

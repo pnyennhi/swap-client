@@ -1,0 +1,42 @@
+.category-circle-wrapper {
+  width: 20%;
+}
+.category-circle {
+  display: block;
+  width: 75%;
+  margin: auto;
+}
+
+.category-circle:hover .category-circle-title {
+  font-weight: 700;
+  color: #ce7852;
+  transition: all 0.2s ease-in;
+}
+.category-circle:hover .category-circle-bg {
+  -webkit-box-shadow: 1px 6px 26px 0px rgba(209, 209, 209, 1);
+  -moz-box-shadow: 1px 6px 26px 0px rgba(209, 209, 209, 1);
+  box-shadow: 1px 6px 26px 0px rgba(209, 209, 209, 1);
+  transition: all 0.2s ease-in-out;
+}
+.category-circle-bg {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.category-circle-bg img {
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.category-circle-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 15px;
+  text-transform: uppercase;
+}

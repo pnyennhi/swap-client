@@ -1,0 +1,8 @@
+.header__area .anticon {
+  color: #333;
+  font-size: 24px;
+}
+
+.is-sticky .anticon {
+  color: #fff;
+}

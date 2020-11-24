@@ -1,0 +1,31 @@
+.sidebar {
+  width: 230px;
+}
+
+.sidebar a.active {
+  color: #e59285;
+  font-weight: 600;
+}
+
+.icon-bg {
+  padding: 7px;
+  margin-right: 10px;
+  border-radius: 50%;
+  color: #402f2f !important;
+}
+
+.bg-yellow {
+  background-color: #ffff58;
+}
+
+.bg-pink {
+  background-color: #e59285;
+}
+
+.bg-green {
+  background-color: #b7f983;
+}
+
+.bg-blue {
+  background-color: #7abdff;
+}
