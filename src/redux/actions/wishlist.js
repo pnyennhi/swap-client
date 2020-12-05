@@ -17,7 +17,7 @@ export function setWishlist() {
 export function addWishlist(productId) {
   Axios.post(`/wishlist`, { productId })
     .then(() => {
-      Toast.success("Sản phẩm đã được thêm vào giỏ hàng");
+      Toast.success("Sản phẩm đã được thêm vào danh sách yêu thích");
       Axios.get("wishlist/user")
         .then((res) =>
           store.dispatch({

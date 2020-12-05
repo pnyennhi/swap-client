@@ -62,3 +62,9 @@
   margin-right: 0;
   margin-left: 8px;
 }
+
+.product .product__thumb .size {
+  font-size: 12px;
+  line-height: normal;
+  color: #777777;
+}

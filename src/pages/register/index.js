@@ -25,6 +25,10 @@ export default () => {
     e.preventDefault();
     form.current.reportValidity();
     if (form.current.checkValidity()) {
+      if (signup.password !== signup.confirmPassword) {
+        setError("Mật khẩu không trùng khớp");
+        return;
+      }
       setIsLoading(true);
       axios
         .post("http://localhost:3001/users", {
@@ -133,7 +137,7 @@ export default () => {
 
               <div className="input__box">
                 <label>
-                  Tên <span>*</span>
+                  Tên hiển thị <span>*</span>
                 </label>
                 <input
                   type="text"

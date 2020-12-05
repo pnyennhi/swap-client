@@ -92,6 +92,7 @@ export default ({ products, itemClass }) => {
         <Product
           name={product.name}
           price={product.price}
+          size={product.size}
           id={product.id}
           imageSrc={product.coverImage}
         />

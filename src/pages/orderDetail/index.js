@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Button } from "antd";
+import { Divider, Button, Tag } from "antd";
 import { useParams } from "react-router-dom";
 import OrderItem from "../../components/OrderItem";
 import Axios from "../../Axios";
+import { ORDER_STATUS } from "../../constants";
 
 const OrderDetail = () => {
   const [order, setOrder] = useState(null);
@@ -32,7 +33,15 @@ const OrderDetail = () => {
           <h4 className="mb-4">Thông tin đơn hàng</h4>
           <div className="flex justify-content-between">
             <p>Mã đơn hàng: {order.id}</p>
-            <p>{order.status.status}</p>
+            <Tag
+              className="status"
+              color={
+                ORDER_STATUS.find((item) => item.status === order.status.status)
+                  ?.color
+              }
+            >
+              {order.status.status}
+            </Tag>
           </div>
           <p>
             Ngày đặt: {new Date(order.createdAt).toLocaleDateString("en-gb")}
@@ -58,9 +67,15 @@ const OrderDetail = () => {
             hideStatus={true}
           />
           <Divider />
-          <div className="flex justify-content-end align-items-center mb-3">
-            <p className="mr-4">Tổng tiền:</p>
-            <h4 className="text-orange font-weight-600">{order.total}</h4>
+          <div className="row justify-content-end align-items-center mb-3">
+            <p className="mr-4 col-2 text-right">Phí vận chuyển:</p>
+            <p className="col-2 text-right">{order.shippingFee}</p>
+          </div>
+          <div className="row justify-content-end align-items-center mb-1">
+            <p className="mr-4 col-2 text-right">Tổng tiền:</p>
+            <h4 className="col-2 text-orange font-weight-600 text-right">
+              {order.total}
+            </h4>
           </div>
           {order.statusId === 1 && (
             <div className="flex justify-content-end">

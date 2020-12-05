@@ -72,9 +72,9 @@ const Home = () => {
           <div className="mt--40">
             <ProductCarousel products={newProducts} itemClass="" />
           </div>
-          <div className="mt--10 text-center">
+          <div className="mt--20 text-center">
             <Link to="/shop/all">
-              <Button className="btn-bg-white">See All</Button>
+              <Button className="btn-bg-white">Xem thêm</Button>
             </Link>
           </div>
         </div>
@@ -97,10 +97,11 @@ const Home = () => {
           <div className="mt--40">
             <div className="row">
               {allProducts.map((product) => (
-                <div className="col-lg-20 col-md-3 col-6 px-6">
+                <div className="col-lg-20 col-md-3 col-6 px-6 mb-3">
                   <Product
                     name={product.name}
                     price={product.price}
+                    size={product.size}
                     id={product.id}
                     imageSrc={product.coverImage}
                   />

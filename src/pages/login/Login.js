@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useRef } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Spin } from "antd";
 import { updateUser } from "../../redux/actions/user";
 import { setWishlist } from "../../redux/actions/wishlist";
@@ -116,8 +116,13 @@ export default () => {
                   </a>
                 </div>
               </div>
-              <div className="form__btn">
+              <div className="form__btn mb-2">
                 <button type="submit">Login</button>
+              </div>
+              <div className="text-center">
+                <Link className="forget_pass" to="signup">
+                  Bạn chưa có tài khoản? Đăng kí ngay
+                </Link>
               </div>
             </div>
           </form>

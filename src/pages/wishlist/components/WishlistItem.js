@@ -66,7 +66,9 @@ export default ({ wishlist, onDelete, onAdd }) => {
                           </Link>
                         </td>
                         <td className="product-price">
-                          <span className="amount">{item.product.price}</span>
+                          <span className="amount font-weight-600">
+                            $ {item.product.price}
+                          </span>
                         </td>
                         <td className="product-status">
                           <span className="wishlist-in-stock">

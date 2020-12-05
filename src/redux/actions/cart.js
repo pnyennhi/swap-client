@@ -55,7 +55,7 @@ export function updateCart(productId, quantity, resolve, reject) {
         })
     )
     .catch((err) => {
-      alert(err);
+      Toast.fail(err.response.data);
       if (reject) reject();
     });
 }

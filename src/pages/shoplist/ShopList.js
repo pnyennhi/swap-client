@@ -83,21 +83,44 @@ export default () => {
         setCategories(data);
       })
       .catch((err) => console.log(err));
+
+    const uri =
+      category === "all"
+        ? `http://localhost:3001/sizes?isUnique=true`
+        : `http://localhost:3001/sizes?isUnique=true&category=${category}`;
+    Axios.get(uri)
+      .then((res) => {
+        setSizes(res.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
     console.log(filters);
     fetchProducts();
+    const uri =
+      filters.categoryId?.length <= 0
+        ? `http://localhost:3001/sizes?isUnique=true`
+        : `http://localhost:3001/sizes?isUnique=true&${query_string.stringify({
+            categoryId: filters.categoryId,
+          })}`;
+    Axios.get(uri)
+      .then((res) => {
+        setSizes(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [currentPage, filters]);
 
   useEffect(() => {
-    if (category !== "all") {
-      Axios.get(`http://localhost:3001/sizes?category=${category}`)
-        .then((res) => {
-          setSizes(res.data);
-        })
-        .catch((err) => console.log(err));
-    }
+    const uri =
+      category === "all"
+        ? `http://localhost:3001/sizes?isUnique=true`
+        : `http://localhost:3001/sizes?isUnique=true&category=${category}`;
+    Axios.get(uri)
+      .then((res) => {
+        setSizes(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [category]);
 
   const onChangeFilters = (field, values) => {
@@ -198,21 +221,19 @@ export default () => {
                   options={conditions}
                   onChange={onChangeFilters}
                 />
-                {category !== "all" && (
-                  <aside className="wedget__categories poroduct--cat">
-                    <h3 className="wedget__title">Size</h3>
-                    {sizes.map((size) => (
-                      <CheckableTag
-                        className="size mb-2"
-                        key={size.id}
-                        checked={filters.size.indexOf(size.size) > -1}
-                        onChange={(checked) => handleSelectSize(size, checked)}
-                      >
-                        {size.size}
-                      </CheckableTag>
-                    ))}
-                  </aside>
-                )}
+                <aside className="wedget__categories poroduct--cat">
+                  <h3 className="wedget__title">Size</h3>
+                  {sizes.map((size) => (
+                    <CheckableTag
+                      className="size mb-2"
+                      key={size.id}
+                      checked={filters.size.indexOf(size.size) > -1}
+                      onChange={(checked) => handleSelectSize(size, checked)}
+                    >
+                      {size.size}
+                    </CheckableTag>
+                  ))}
+                </aside>
               </div>
             </div>
             <div className="col-lg-80 col-12 order-1 order-lg-2">
@@ -244,6 +265,7 @@ export default () => {
                     <Product
                       name={product.name}
                       price={product.price}
+                      size={product.size}
                       id={product.id}
                       imageSrc={product.coverImage}
                     />

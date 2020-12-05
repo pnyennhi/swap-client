@@ -68,7 +68,7 @@ const Owner = ({ id }) => {
               <div className="container text-center">
                 <h4>{owner.username}</h4>
                 <p className="email">{owner.email}</p>
-                <Link className="rate-link" to="/">
+                <Link className="rate-link" to={`/user/${id}/review`}>
                   <Rate
                     className="mr-3"
                     value={owner.rate}
@@ -91,6 +91,7 @@ const Owner = ({ id }) => {
                   <Product
                     name={product.name}
                     price={product.price}
+                    size={product.size}
                     id={product.id}
                     imageSrc={product.coverImage}
                   />

@@ -98,13 +98,17 @@ const AddProduct = ({ id }) => {
   const handleEditProduct = (values, formikBag) => {
     console.log(values);
 
-    if ([1, 4].includes(values.statusId))
-      Axios.put(`/products/${id}`, values)
-        .then((res) => Toast.success("Thành công", 2000))
-        .catch((err) => Toast.fail("Fail", 2000));
+    Axios.put(`/products/${id}`, values)
+      .then((res) =>
+        Toast.success("Sản phẩm đã được gửi đến quản trị viên chờ duyệt", 2000)
+      )
+      .catch((err) =>
+        Toast.fail("Đã có lỗi xảy ra. Vui lòng thử lại sau", 2000)
+      );
   };
 
   const handleSubmit = async (values, formikBag) => {
+    alert(1);
     if (cover?.length <= 0) {
       setCoverValidate("Bạn phải upload ít nhất 1 ảnh bìa");
       formikBag.setSubmitting(false);
@@ -134,7 +138,7 @@ const AddProduct = ({ id }) => {
       handleEditProduct(values, formikBag);
     } catch (err) {
       console.log(err);
-      Toast.fail("Fail");
+      Toast.fail("Đã có lối xảy ra. Vui lòng thử lại sau");
       formikBag.setSubmitting(false);
       return;
     }
@@ -190,7 +194,7 @@ const AddProduct = ({ id }) => {
         } = props;
         return (
           <Form {...layout} colon={false}>
-            <div className="checkout checkout_info">
+            <div className="checkout checkout_info bg--white">
               <h5 className="mb-4">Thông tin sản phẩm</h5>
               <Field
                 type="text"
@@ -260,7 +264,7 @@ const AddProduct = ({ id }) => {
                 label="Mô tả"
               />
             </div>
-            <div className="checkout checkout_info">
+            <div className="checkout checkout_info bg--white">
               <h5 className="mb-4">Thông tin bán hàng</h5>
               <Field
                 type="text"
@@ -280,7 +284,7 @@ const AddProduct = ({ id }) => {
               />
             </div>
 
-            <div className="checkout checkout_info">
+            <div className="checkout checkout_info bg--white">
               <h5 className="mb-4">Quản lý hình ảnh</h5>
               <p>Ảnh bìa</p>
               <ImageUploader
@@ -312,13 +316,10 @@ const AddProduct = ({ id }) => {
               <Space>
                 <Button
                   type="submit"
-                  className="btn-orange"
+                  className="btn-orange font-weight-600 text-uppercase"
                   onClick={handleSubmit}
                 >
-                  Thêm
-                </Button>
-                <Button className="btn-secondary" onClick={handleReset}>
-                  Reset
+                  Lưu
                 </Button>
               </Space>
             </div>

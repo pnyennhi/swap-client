@@ -21,6 +21,7 @@
     "react-items-carousel": "^2.8.0",
     "react-multi-carousel": "^2.5.5",
     "react-paypal-button-v2": "^2.6.2",
+    "react-pin-input": "^1.0.1",
     "react-pro-sidebar": "^0.4.4",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",

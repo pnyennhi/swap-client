@@ -3,8 +3,6 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import "./Detail.css";
 import Product from "./components/Product";
 import ProductInfo from "./components/ProductInfo";
-import Header from "../../layouts/Header/Header";
-import CategoryMenu from "../../layouts/CategoryMenu/CategoryMenu";
 import Axios from "../../Axios";
 import { useSelector } from "react-redux";
 import {
@@ -53,8 +51,6 @@ export default ({ id }) => {
 
   return (
     <>
-      <Header />
-      <CategoryMenu />
       <div className="maincontent bg--white pt--80 pb--55">
         <div className="container">
           <div className="row">

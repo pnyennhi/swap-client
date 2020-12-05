@@ -17,6 +17,8 @@ export default () => {
       .catch((err) => console.log(err));
   }, []);
 
+  console.log("category");
+
   return (
     <header id="header" className="category-menu header__area sticky__header">
       <div className="container-fluid">
@@ -27,7 +29,7 @@ export default () => {
                 {categories.map((category, index) => (
                   <li className="drop" key={index}>
                     <a href="index.html">{category.category}</a>
-                    <CategoryDropdown />
+                    <CategoryDropdown subCategories={category.children} />
                   </li>
                 ))}
               </ul>

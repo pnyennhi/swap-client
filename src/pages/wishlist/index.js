@@ -32,7 +32,7 @@ export default () => {
   };
 
   return (
-    <>
+    <div className="user-wishlist">
       {products.map((item, index) => (
         <>
           <WishlistItem
@@ -43,6 +43,6 @@ export default () => {
           />
         </>
       ))}
-    </>
+    </div>
   );
 };

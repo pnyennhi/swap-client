@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./App.css";
@@ -9,9 +14,7 @@ import Login from "./pages/login/Login";
 import Signup from "./pages/register";
 import Owner from "./pages/owner";
 import OwnerReview from "./pages/ownerReview";
-import Detail from "./pages/detail";
-import Cart from "./pages/cart";
-import Checkout from "./pages/checkout";
+import ChangePassword from "./pages/changePassword";
 import Layout from "./layouts";
 import Profile from "./layouts/Profile";
 import Seller from "./sellerLayout";
@@ -52,11 +55,13 @@ function App() {
         <Switch>
           <Route path="/" exact component={Layout} />
           <Route path="/shop" component={Layout} />
-          <Route path="/search" exact component={Layout} />
+          <Route path="/search/product" exact component={Layout} />
+          <Route path="/search/user" exact component={Layout} />
           <Route
             path="/item/:id"
             exact
-            render={(props) => <Detail id={props.match.params.id} />}
+            // render={(props) => <Detail id={props.match.params.id} />}
+            component={Layout}
           />
           <Route
             path="/user/:id"
@@ -70,13 +75,14 @@ function App() {
           />
           <PublicRoute path="/login" component={Login} />
           <PublicRoute path="/signup" component={Signup} />
-          <PrivateRoute exact path="/cart" component={Cart} />
-          <PrivateRoute exact path="/checkout" component={Checkout} />
+          <PrivateRoute exact path="/cart" component={Layout} />
+          <PrivateRoute exact path="/checkout" component={Layout} />
           <PrivateRoute exact path="/wishlist" component={Profile} />
           <PrivateRoute exact path="/orders" component={Profile} />
           <PrivateRoute exact path="/order/detail/:id" component={Profile} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/wallet" component={Profile} />
+          <PrivateRoute exact path="/change-password" component={Profile} />
           <PrivateRoute path="/seller" component={Seller} />
           <PrivateRoute path="/paypal" component={Paypal} />
         </Switch>

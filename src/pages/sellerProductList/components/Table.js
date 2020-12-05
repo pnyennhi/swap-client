@@ -2,9 +2,10 @@
 import React from "react";
 import { Table, Space } from "antd";
 import { EditFilled, MinusCircleOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import Product from "../../../components/Product-Row";
 
-const ProductTable = ({ dataSource }) => {
+const ProductTable = ({ dataSource, onDelete }) => {
   const columns = [
     {
       title: "Id",
@@ -37,8 +38,8 @@ const ProductTable = ({ dataSource }) => {
     },
     {
       title: "Giá",
-      dataIndex: "price",
       key: "price",
+      render: (record) => <p className="font-weight-600">${record.price}</p>,
       sorter: (a, b) => a.price - b.price,
       sortDirections: ["descend", "ascend"],
     },
@@ -61,10 +62,10 @@ const ProductTable = ({ dataSource }) => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <a title="Sửa">
+          <Link to={`/seller/products/edit/${record.id}`} title="Sửa">
             <EditFilled style={{ color: "#f1b224", fontSize: "16px" }} />
-          </a>
-          <a title="Ẩn">
+          </Link>
+          <a title="Xóa" onClick={() => onDelete(record.id)}>
             <MinusCircleOutlined style={{ color: "red", fontSize: "16px" }} />
           </a>
         </Space>

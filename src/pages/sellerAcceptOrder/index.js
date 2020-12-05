@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Toast from "light-toast";
 import { Steps, Button, Result } from "antd";
 import RecipientItem from "./components/RecipientItem";
@@ -23,7 +23,7 @@ const SellerAcceptOrder = ({ id }) => {
   useEffect(() => {
     Axios.get(`/orders/${id}`)
       .then((res) => {
-        if (res.data.statusId !== 1) history.push("/seller/orders");
+        if (res.data.statusId !== 2) history.push("/seller/orders");
         else setOrder(res.data);
       })
       .catch((err) => console.log(err));
@@ -141,7 +141,7 @@ const SellerAcceptOrder = ({ id }) => {
 
   const steps = [
     {
-      title: "Chọn địa chỉ nhận hàng",
+      title: "Chọn địa chỉ lấy hàng",
       content: (
         <RecipientItem
           recipients={recipients}
@@ -164,8 +164,8 @@ const SellerAcceptOrder = ({ id }) => {
       title: "Xác nhận đơn hàng",
       content: (
         <>
-          {/* {recipient && (
-            <div className="checkout checkout_info">
+          {recipient && (
+            <div className="checkout checkout_info bg--white">
               <h5>Địa chỉ lấy hàng</h5>
               <div className="mt-3">
                 <h6>{recipient.name}</h6>
@@ -176,20 +176,39 @@ const SellerAcceptOrder = ({ id }) => {
                 <p>Điện thoại: {recipient.phone}</p>
               </div>
             </div>
-          )} */}
-          <OrderDetail id={id} />
+          )}
+          <OrderDetail order={order} />
         </>
       ),
     },
     {
       title: "Kết quả",
-      content: <Result status={status} />,
+      content: (
+        <Result
+          className="bg--white"
+          status={status}
+          title="Cảm ơn bạn đã xác nhận đơn hàng"
+          subTitle={
+            <div className="text-center">
+              <p>Mã đơn hàng: {id}</p>
+              <p>
+                Vui lòng chuẩn bị hàng cho nhân viên vận chuyển đến lấy hàng
+              </p>
+            </div>
+          }
+          extra={[
+            <Link to="/seller/orders">
+              <Button className="btn-orange">Đến danh sách đơn hàng</Button>
+            </Link>,
+          ]}
+        />
+      ),
     },
   ];
 
   return (
     <div className="container">
-      <Steps current={current}>
+      <Steps className="mb-4" current={current}>
         {steps.map((item) => (
           <Step key={item.title} title={item.title} />
         ))}
@@ -197,18 +216,17 @@ const SellerAcceptOrder = ({ id }) => {
       <div className="steps-content">{steps[current].content}</div>
       <div className="steps-action">
         {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => next()}>
-            Next
-          </Button>
-        )}
-        {current === steps.length - 1 && (
-          <Button type="primary" onClick={() => {}}>
-            Done
+          <Button className="btn-orange" onClick={() => next()}>
+            {current === 0 ? "Tiếp tục" : "Xác nhận đơn hàng"}
           </Button>
         )}
         {current > 0 && current < steps.length - 1 && (
-          <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
-            Previous
+          <Button
+            className="btn-orange-outlined"
+            style={{ margin: "0 8px" }}
+            onClick={() => prev()}
+          >
+            Quay lại
           </Button>
         )}
       </div>

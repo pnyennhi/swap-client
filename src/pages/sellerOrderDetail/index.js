@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Divider, Button } from "antd";
+import { Link } from "react-router-dom";
 import OrderItem from "../../components/OrderItem";
 import OrderDetail from "../../components/OrderDetail";
 import Axios from "../../Axios";
@@ -15,61 +16,61 @@ const SellerOrderDetail = ({ id }) => {
 
   const departureDiv = useRef();
 
-  // useEffect(() => {
-  //   Axios.get(`/orders/${id}`)
-  //     .then((res) => setOrder(res.data))
-  //     .catch((err) => console.log(err));
-
-  //   Axios.get("/recipients/user")
-  //     .then((res) => {
-  //       const data = res.data;
-  //       setDepartures(data);
-  //       setDeparture(data.find((item) => item.isDefault === true));
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   useEffect(() => {
-    if (isAccepting) console.log(departureDiv);
-  }, [isAccepting]);
+    Axios.get(`/orders/${id}`)
+      .then((res) => setOrder(res.data))
+      .catch((err) => console.log(err));
 
-  const handleAddRecipient = (values) => {
-    Axios.post("/recipients", values)
-      .then((res) => {
-        setShowAdd(false);
-        Axios.get("/recipients/user")
-          .then((res) => {
-            const data = res.data;
-            setDepartures(data);
-            setDeparture(data.find((item) => item.isDefault === true));
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => {
-        console.log(err);
-        Toast.fail("Đã có lỗi xảy ra. Vui lòng thử lại sau", 2000);
-      });
-  };
+    //   Axios.get("/recipients/user")
+    //     .then((res) => {
+    //       const data = res.data;
+    //       setDepartures(data);
+    //       setDeparture(data.find((item) => item.isDefault === true));
+    //     })
+    //     .catch((err) => console.log(err));
+  }, []);
 
-  const handleSelectRecipient = (value) => {
-    setDeparture(value);
-    // console.log(value);
-  };
+  // useEffect(() => {
+  //   if (isAccepting) console.log(departureDiv);
+  // }, [isAccepting]);
 
-  const handleAcceptOrder = () => {
-    if (!departure) {
-      Toast.fail("Bạn cần chọn địa chỉ lấy hàng");
-      return;
-    }
+  // const handleAddRecipient = (values) => {
+  //   Axios.post("/recipients", values)
+  //     .then((res) => {
+  //       setShowAdd(false);
+  //       Axios.get("/recipients/user")
+  //         .then((res) => {
+  //           const data = res.data;
+  //           setDepartures(data);
+  //           setDeparture(data.find((item) => item.isDefault === true));
+  //         })
+  //         .catch((err) => console.log(err));
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       Toast.fail("Đã có lỗi xảy ra. Vui lòng thử lại sau", 2000);
+  //     });
+  // };
 
-    Axios.put(`/orders/accept/${id}`, { departureId: departure.id })
-      .then((res) => {
-        Toast.success("Xác nhận đơn hàng thanh công");
-      })
-      .catch((err) => {
-        Toast.fail("Đã có lỗi xảy ra");
-      });
-  };
+  // const handleSelectRecipient = (value) => {
+  //   setDeparture(value);
+  //   // console.log(value);
+  // };
+
+  // const handleAcceptOrder = () => {
+  //   if (!departure) {
+  //     Toast.fail("Bạn cần chọn địa chỉ lấy hàng");
+  //     return;
+  //   }
+
+  //   Axios.put(`/orders/accept/${id}`, { departureId: departure.id })
+  //     .then((res) => {
+  //       Toast.success("Xác nhận đơn hàng thanh công");
+  //     })
+  //     .catch((err) => {
+  //       Toast.fail("Đã có lỗi xảy ra");
+  //     });
+  // };
 
   const handleRejectOrder = () => {
     Axios.put(`/orders/reject/${id}`)
@@ -83,7 +84,7 @@ const SellerOrderDetail = ({ id }) => {
 
   return (
     <>
-      <OrderDetail id={id} />
+      <OrderDetail order={order} />
       {/* <div
         className="checkout checkout_info address"
         style={{ display: isAccepting ? "block" : "none" }}
@@ -101,17 +102,17 @@ const SellerOrderDetail = ({ id }) => {
         />
       </div> */}
 
-      {!isAccepting && order?.statusId === 1 && (
-        <Button className="btn-orange" onClick={() => setIsAccepting(true)}>
-          Tiến hành xác nhận
-        </Button>
+      {order?.statusId === 2 && (
+        <Link to={`/seller/orders/accept/${id}`}>
+          <Button className="btn-orange">Tiến hành xác nhận</Button>
+        </Link>
       )}
       {/* {isAccepting && order?.statusId === 1 && (
         <Button className="btn-orange" onClick={() => handleAcceptOrder()}>
           Xác nhận đơn hàng
         </Button>
       )} */}
-      {order?.statusId === 1 && (
+      {order?.statusId === 2 && (
         <Button className="btn-orange" onClick={() => handleRejectOrder()}>
           Hủy đơn hàng
         </Button>

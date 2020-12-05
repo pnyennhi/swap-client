@@ -87,7 +87,7 @@ const RecipientItem = ({
     <>
       <div className="mt-4">
         <a className="a-orange" onClick={() => setShowAdd(true)}>
-          <PlusCircleOutlined /> Thêm địa chỉ nhận hàng mới
+          <PlusCircleOutlined /> Thêm địa chỉ lấy hàng mới
         </a>
       </div>
       <div className="row mt-4">
@@ -151,8 +151,8 @@ const RecipientItem = ({
       <Modal
         title={
           editedRecipient
-            ? "Chỉnh sửa địa chỉ nhận hàng"
-            : "Thêm địa chỉ nhận hàng"
+            ? "Chỉnh sửa địa chỉ lấy hàng"
+            : "Thêm địa chỉ lấy hàng"
         }
         visible={showAdd}
         onOk={form.submit}
@@ -170,11 +170,9 @@ const RecipientItem = ({
           }
         >
           <Form.Item
-            label="Tên người nhận"
+            label="Tên"
             name="name"
-            rules={[
-              { required: true, message: "Vui lòng nhập tên người nhận!" },
-            ]}
+            rules={[{ required: true, message: "Vui lòng nhập tên" }]}
           >
             <Input />
           </Form.Item>

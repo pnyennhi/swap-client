@@ -100,7 +100,7 @@ const AddProduct = () => {
     brand: "",
     description: "",
     price: null,
-    quantity: null,
+    quantity: 1,
   };
 
   const SignupSchema = Yup.object().shape({
@@ -131,8 +131,12 @@ const AddProduct = () => {
     console.log(values);
 
     Axios.post("/products", values)
-      .then((res) => Toast.success("Thành công", 2000))
-      .catch((err) => Toast.fail("Fail", 2000));
+      .then((res) =>
+        Toast.success("Sản phẩm đã được gửi đến quản trị viên chờ duyệt", 2000)
+      )
+      .catch((err) =>
+        Toast.fail("Đã có lỗi xảy ra. Vui lòng thử lại sau", 2000)
+      );
   };
 
   const handleSubmit = async (values, formikBag) => {
@@ -224,7 +228,7 @@ const AddProduct = () => {
         } = props;
         return (
           <Form {...layout} colon={false}>
-            <div className="checkout checkout_info">
+            <div className="checkout checkout_info bg--white">
               <h5 className="mb-4">Thông tin sản phẩm</h5>
               <Field
                 type="text"
@@ -317,11 +321,10 @@ const AddProduct = () => {
                 label="Mô tả"
               />
             </div>
-            <div className="checkout checkout_info">
+            <div className="checkout checkout_info bg--white">
               <h5 className="mb-4">Thông tin bán hàng</h5>
               <Field
                 type="number"
-                prefix="$"
                 name="price"
                 component={TextInput}
                 className={
@@ -332,19 +335,19 @@ const AddProduct = () => {
                 label="Giá"
               />
               <Field
-                type="text"
+                type="number"
                 name="quantity"
-                component={TextInput}
                 className={
                   errors.quantity && touched.quantity
                     ? "form-control error"
                     : "form-control"
                 }
+                component={TextInput}
                 label="Số lượng"
               />
             </div>
 
-            <div className="checkout checkout_info">
+            <div className="checkout checkout_info bg--white">
               <h5 className="mb-4">Quản lý hình ảnh</h5>
               <p>Ảnh bìa</p>
               <ImageUploader
@@ -374,12 +377,15 @@ const AddProduct = () => {
               <Space>
                 <Button
                   type="submit"
-                  className="btn-orange"
+                  className="btn-orange font-weight-600 text-uppercase"
                   onClick={handleSubmit}
                 >
                   Thêm
                 </Button>
-                <Button className="btn-secondary" onClick={handleReset}>
+                <Button
+                  className="btn-secondary font-weight-600 text-uppercase"
+                  onClick={handleReset}
+                >
                   Reset
                 </Button>
               </Space>

@@ -4,18 +4,35 @@
   align-items: center;
 }
 .minisearch .field__search {
-  flex-basis: 75%;
+  flex-basis: 90%;
   display: flex;
   align-items: center;
   height: 36px;
   border: solid #333 1px;
   border-radius: 20px;
   margin: initial;
-  padding: 0 25px;
+  padding: 0 25px 0 0;
 }
+
+.minisearch .ant-input-group-wrapper,
+.minisearch .ant-input-group {
+  height: 100%;
+}
+
+.minisearch .ant-input-group-addon {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.minisearch .ant-select-arrow .anticon {
+  font-size: 12px !important;
+  color: #333 !important;
+}
+
 .minisearch .field__search input {
   border: none;
-  padding: 0 60px 0 0;
+  padding: 0 60px 0 10px;
   height: 100%;
   color: #333;
 }

@@ -35,7 +35,7 @@ const Checkout = ({
     0
   );
   return (
-    <section className="wn__checkout__area section-padding--lg bg__white">
+    <section className="wn__checkout__area pt--30 bg__white">
       {/* <div className="container"> */}
       <div className="row">
         <div className="col-12">
@@ -79,13 +79,13 @@ const Checkout = ({
                             Tổng tiền sản phẩm
                           </div>
                           <div className="col-6 text-right price">
-                            {total - totalShippingFee}
+                            $ {total - totalShippingFee}
                           </div>
                         </div>
                         <div className="row total-row">
                           <div className="col-6 text-right">Tiền ship</div>
                           <div className="col-6 text-right price">
-                            {totalShippingFee}
+                            $ {totalShippingFee}
                           </div>
                         </div>
                         <div className="row total-row">
@@ -93,7 +93,7 @@ const Checkout = ({
                             Tổng cộng
                           </div>
                           <div className="col-6 text-right total-price">
-                            {total}
+                            $ {total}
                           </div>
                         </div>
                       </div>

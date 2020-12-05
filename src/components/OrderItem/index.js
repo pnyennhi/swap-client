@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Avatar } from "antd";
+import { Avatar, Tag } from "antd";
 import Product from "../Product-Row";
+import { ORDER_STATUS } from "../../constants";
 
 const OrderItem = ({ products, status, seller, hideStatus }) => {
   return (
@@ -15,7 +16,14 @@ const OrderItem = ({ products, status, seller, hideStatus }) => {
             </span>
           </Link>
         </div>
-        {!hideStatus && <div className="text-right">{status}</div>}
+        {!hideStatus && (
+          <Tag
+            className="status"
+            color={ORDER_STATUS.find((item) => item.status === status)?.color}
+          >
+            {status}
+          </Tag>
+        )}
       </div>
       {products.map((item, index) => {
         return (
@@ -29,7 +37,7 @@ const OrderItem = ({ products, status, seller, hideStatus }) => {
               />
             </div>
             <div className="col-1 text-right">x{item.quantity}</div>
-            <div className="col-2 text-right">{item.price}</div>
+            <div className="col-2 text-right">$ {item.price}</div>
           </div>
         );
       })}

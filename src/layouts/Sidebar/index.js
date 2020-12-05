@@ -6,6 +6,7 @@ import {
   FileTextOutlined,
   HeartOutlined,
   WalletOutlined,
+  SafetyOutlined,
 } from "@ant-design/icons";
 
 export default () => {
@@ -34,6 +35,12 @@ export default () => {
           <NavLink to="/wallet">
             <WalletOutlined className="icon-bg bg-blue" />
             Ví của tôi
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/change-password">
+            <SafetyOutlined className="icon-bg bg-purple" />
+            Đổi mật khẩu
           </NavLink>
         </li>
       </ul>

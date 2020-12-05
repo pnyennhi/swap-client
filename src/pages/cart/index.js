@@ -3,8 +3,6 @@ import { useHistory } from "react-router-dom";
 import Toast from "light-toast";
 import "./Cart.css";
 import CartItem from "./components/CartItem";
-import Header from "../../layouts/Header/Header";
-import CategoryMenu from "../../layouts/CategoryMenu/CategoryMenu";
 import { Checkbox, Button } from "antd";
 import { useSelector } from "react-redux";
 import { productMapper } from "../../utils";
@@ -111,8 +109,6 @@ export default () => {
 
   return (
     <>
-      <Header />
-      <CategoryMenu />
       <section className="cart-area pt-4">
         <div className="container">
           <div className="wishlist-table wnro__table">
@@ -162,8 +158,8 @@ export default () => {
                     <span className="check-all">Chọn tất cả</span>
                   </div>
                   <div className="flex align-items-center">
-                    <span className="total">Tổng tiền</span>
-                    <span className="total-amount">{total}</span>
+                    <span className="total">Tổng tiền:</span>
+                    <span className="total-amount">$ {total}</span>
                     <Button
                       className="btn-order btn-orange text-upper font-weight-700"
                       size="large"

@@ -14,6 +14,7 @@ const Order = () => {
   const [selectedOrder, setSelectedOrder] = useState({});
   const [review, setReview] = useState({ rate: 0, review: null });
   const [paidOrder, setPaidOrder] = useState({ id: null, total: 0 });
+  const [canceledOrder, setCanceledOrder] = useState(null);
   const [changedOrder, setChangedOrder] = useState(null);
   const [method, setMethod] = useState("cod");
 
@@ -53,10 +54,11 @@ const Order = () => {
       });
   };
 
-  const handleCancelOrder = (orderId) => {
-    Axios.put(`/orders/reject/${orderId}`)
+  const handleCancelOrder = () => {
+    Axios.put(`/orders/reject/${canceledOrder}`)
       .then((res) => {
         fetchOrder();
+        setCanceledOrder(null);
       })
       .catch((err) => {
         console.log(err);
@@ -117,10 +119,10 @@ const Order = () => {
             <Divider />
             <div className="flex justify-content-end align-items-center mb-3">
               <p className="mr-4">Tổng tiền:</p>
-              <h4 className="text-orange font-weight-600">{total}</h4>
+              <h4 className="text-orange font-weight-600">$ {total}</h4>
             </div>
             <div className="flex justify-content-end">
-              {order.statusId === 4 && !order.review && (
+              {order.statusId === 5 && !order.review && (
                 <Button
                   className="btn-pink font-weight-600 mr-3"
                   onClick={() => setSelectedOrder(order)}
@@ -128,16 +130,16 @@ const Order = () => {
                   Đánh giá
                 </Button>
               )}
-              {order.statusId === 1 && (
+              {[1, 2].includes(order.statusId) && (
                 <Button
                   className="btn-pink-outlined font-weight-600 mr-3"
-                  onClick={() => handleCancelOrder(order.id)}
+                  onClick={() => setCanceledOrder(order.id)}
                 >
                   Hủy đơn hàng
                 </Button>
               )}
 
-              {order.statusId === 7 && (
+              {order.statusId === 1 && (
                 <Button
                   className="btn-pink-outlined font-weight-600 mr-3"
                   onClick={() => setChangedOrder(order.id)}
@@ -145,7 +147,7 @@ const Order = () => {
                   Đổi phương thức thanh toán
                 </Button>
               )}
-              {order.statusId === 7 && (
+              {order.statusId === 1 && (
                 <Button
                   className="btn-pink font-weight-600 mr-3"
                   onClick={() => setPaidOrder({ id: order.id, total })}
@@ -221,6 +223,16 @@ const Order = () => {
             </Radio>
           </div>
         </Radio.Group>
+      </Modal>
+
+      <Modal
+        visible={canceledOrder}
+        onOk={handleCancelOrder}
+        onCancel={() => setCanceledOrder(null)}
+        cancelText="Không"
+        okText="Hủy đơn hàng"
+      >
+        <p>Bạn có chắc chắn hủy đơn hàng này?</p>
       </Modal>
     </>
   );

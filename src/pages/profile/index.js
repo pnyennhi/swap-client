@@ -54,13 +54,7 @@ export default () => {
         {info?.email}
       </Form.Item>
 
-      <Form.Item
-        label="Số điện thoại"
-        name="phone"
-        rules={[
-          { required: true, message: "Vui lòng nhập số điện thoại của bạn!" },
-        ]}
-      >
+      <Form.Item label="Số điện thoại" name="phone">
         <Input />
       </Form.Item>
 

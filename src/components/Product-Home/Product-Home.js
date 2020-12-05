@@ -5,7 +5,7 @@ import "./Product-Home.css";
 import { addCart, setCart } from "../../redux/actions/cart";
 import { addWishlist, setWishlist } from "../../redux/actions/wishlist";
 
-const Product = ({ name, price, imageSrc, id }) => {
+const Product = ({ name, price, size, imageSrc, id }) => {
   let history = useHistory();
 
   const handleAddToCart = (event) => {
@@ -65,8 +65,9 @@ const Product = ({ name, price, imageSrc, id }) => {
         <h4>
           <a href="single-product.html">{name}</a>
         </h4>
+        <p className="mb-0 size">Size: {size}</p>
         <ul className="prize">
-          <li>{price}</li>
+          <li>$ {price}</li>
         </ul>
       </div>
     </div>

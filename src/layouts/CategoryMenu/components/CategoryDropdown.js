@@ -1,56 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default () => {
-  return (
-    <div className="megamenu mega03">
+export default ({ subCategories }) => {
+  const num = Math.ceil(subCategories.length / 5);
+  const menu = [];
+  for (let i = 0; i < num; i++) {
+    const temp = (
       <ul className="item item03">
-        <li className="title">Shop Layout</li>
-        <li>
-          <a href="shop-grid.html">Shop Grid</a>
-        </li>
-        <li>
-          <a href="single-product.html">Single Product</a>
-        </li>
+        {subCategories.slice(i * 5, i * 5 + 5).map((subCate) => (
+          <li>
+            <Link to={`/shop/${subCate.path}`}>{subCate.subCategory}</Link>
+          </li>
+        ))}
       </ul>
-      <ul className="item item03">
-        <li className="title">Shop Page</li>
-        <li>
-          <a href="my-account.html">My Account</a>
-        </li>
-        <li>
-          <a href="cart.html">Cart Page</a>
-        </li>
-        <li>
-          <a href="checkout.html">Checkout Page</a>
-        </li>
-        <li>
-          <a href="wishlist.html">Wishlist Page</a>
-        </li>
-        <li>
-          <a href="error404.html">404 Page</a>
-        </li>
-        <li>
-          <a href="faq.html">Faq Page</a>
-        </li>
-      </ul>
-      <ul className="item item03">
-        <li className="title">Bargain Books</li>
-        <li>
-          <a href="shop-grid.html">Bargain Bestsellers</a>
-        </li>
-        <li>
-          <a href="shop-grid.html">Activity Kits</a>
-        </li>
-        <li>
-          <a href="shop-grid.html">B&N Classics</a>
-        </li>
-        <li>
-          <a href="shop-grid.html">Books Under $5</a>
-        </li>
-        <li>
-          <a href="shop-grid.html">Bargain Books</a>
-        </li>
-      </ul>
-    </div>
-  );
+    );
+    menu.push(temp);
+  }
+  return <div className="megamenu mega03">{menu}</div>;
 };

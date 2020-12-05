@@ -94,7 +94,7 @@ export default ({
                           />
                         </td>
                         <td className="product-price">
-                          <span className="amount">{item.product.price}</span>
+                          <span className="amount">$ {item.product.price}</span>
                         </td>
                         <td className="product-amount">
                           {item.product.quantity > item.product.soldQuantity ? (
@@ -115,7 +115,7 @@ export default ({
                         </td>
                         <td className="product-total text-right">
                           <span className="wishlist-in-stock">
-                            {item.product.price * item.quantity}
+                            $ {item.product.price * item.quantity}
                           </span>
                         </td>
                         <td className="product-delete line-height-0 text-right">

@@ -8,13 +8,13 @@ export default ({ userId, product, isLiked, isInCart, onLike, onAdd }) => {
   const images = product.images.map((item) => ({
     original: item.imageLink,
     thumbnail: item.imageLink,
-    sizes: { width: "450px", height: "565px" },
+    sizes: ` width: "450px", height: "565px" `,
   }));
 
   images.unshift({
     original: product.coverImage,
     thumbnail: product.coverImage,
-    sizes: { width: "450px", height: "565px" },
+    sizes: `width: "450px", height: "565px"`,
   });
 
   let history = useHistory();
@@ -35,7 +35,7 @@ export default ({ userId, product, isLiked, isInCart, onLike, onAdd }) => {
           <div className="product__info__main">
             <h1>{product.name}</h1>
             <div className="price-box flex justify-content-between">
-              <span className="price">{product.price}</span>
+              <span className="price">$ {product.price}</span>
               <span className="flex align-item-center">
                 <span className="like-icon" onClick={() => onLike()}>
                   {isLiked ? (

@@ -62,14 +62,14 @@ export default ({ owner, products, shippingFee }) => (
                         </Link>
                       </td>
                       <td className="product-price">
-                        <span className="amount">{item.product.price}</span>
+                        <span className="amount">$ {item.product.price}</span>
                       </td>
                       <td className="product-amount">
                         <span className="amount">{item.quantity}</span>
                       </td>
                       <td className="product-total">
                         <span className="wishlist-in-stock">
-                          {item.product.price * item.quantity}
+                          $ {item.product.price * item.quantity}
                         </span>
                       </td>
                     </tr>
@@ -101,7 +101,7 @@ export default ({ owner, products, shippingFee }) => (
                       <p style={{ fontSize: "12px", lineHeight: "initial" }}>
                         (3 - 5 ngày)
                       </p>
-                      <p className="font-weight-700">{shippingFee}</p>
+                      <p className="font-weight-700">$ {shippingFee}</p>
                     </div>
                   </div>
                 </div>
@@ -117,6 +117,7 @@ export default ({ owner, products, shippingFee }) => (
                             Tổng tiền sản phẩm
                           </div>
                           <div className="col-6 text-right font-weight-600">
+                            ${" "}
                             {products.reduce((sum, item) => {
                               return (sum +=
                                 item.product.price * item.quantity);
@@ -126,7 +127,7 @@ export default ({ owner, products, shippingFee }) => (
                         <div className="row total-row">
                           <div className="col-6 text-right">Tiền ship</div>
                           <div className="col-6 text-right font-weight-600">
-                            {shippingFee}
+                            $ {shippingFee}
                           </div>
                         </div>
                       </div>

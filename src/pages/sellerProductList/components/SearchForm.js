@@ -27,7 +27,7 @@ const AdvancedSearchForm = ({ categories, onSearch }) => {
           width: 70,
         }}
       >
-        <Option value="id">Id</Option>
+        <Option value="id">Mã sản phẩm</Option>
         <Option value="name">Tên</Option>
       </Select>
     </Form.Item>
@@ -87,6 +87,7 @@ const AdvancedSearchForm = ({ categories, onSearch }) => {
 
   return (
     <Form
+      className="mb-4"
       form={form}
       name="advanced_search"
       layout="vertical"
@@ -97,12 +98,12 @@ const AdvancedSearchForm = ({ categories, onSearch }) => {
       }}
     >
       <Row gutter={24}>
-        <Col lg={{ span: 8 }} key="name">
+        <Col lg={{ span: 7 }} key="name">
           <Form.Item name="name" label="Tên">
             <Input addonBefore={prefixSelector} />
           </Form.Item>
         </Col>
-        <Col lg={{ span: 8 }} key="category">
+        <Col lg={{ span: 6 }} key="category">
           <Form.Item name="category" label="Danh mục">
             <TreeSelect
               showSearch
@@ -134,13 +135,18 @@ const AdvancedSearchForm = ({ categories, onSearch }) => {
             </TreeSelect>
           </Form.Item>
         </Col>
-        <Col lg={{ span: 8 }} style={{ textAlign: "right" }}>
+        <Col lg={{ span: 6 }} key="createdAt">
+          <Form.Item name="createdAt" label="Ngày đăng">
+            <RangePicker />
+          </Form.Item>
+        </Col>
+        <Col lg={{ span: 5 }} style={{ textAlign: "right" }}>
           <Form.Item label=" ">
-            <Button className="btn-pink" htmlType="submit">
+            <Button className="btn-orange" htmlType="submit">
               Search
             </Button>
             <Button
-              className="btn-pink-outlined"
+              className="btn-orange-outlined"
               style={{
                 margin: "0 8px",
               }}
@@ -152,7 +158,7 @@ const AdvancedSearchForm = ({ categories, onSearch }) => {
             </Button>
           </Form.Item>
         </Col>
-        <Col lg={{ span: 8 }} key="price">
+        {/* <Col lg={{ span: 8 }} key="price">
           <Form.Item label="Giá">
             <Form.Item
               name="minPrice"
@@ -177,12 +183,8 @@ const AdvancedSearchForm = ({ categories, onSearch }) => {
               <Input />
             </Form.Item>
           </Form.Item>
-        </Col>
-        <Col lg={{ span: 8 }} key="createdAt">
-          <Form.Item name="createdAt" label="Ngày đăng">
-            <RangePicker />
-          </Form.Item>
-        </Col>
+        </Col> */}
+
         {/* <Col lg={{ span: 8 }} key="status">
           <Form.Item name="status" label="Trạng thái">
             {statusSelector}

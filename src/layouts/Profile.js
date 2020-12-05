@@ -11,6 +11,7 @@ import Wishlist from "../pages/wishlist";
 import Order from "../pages/order";
 import OrderDetail from "../pages/orderDetail";
 import Wallet from "../pages/wallet";
+import ChangePassword from "../pages/changePassword";
 import { uploadUserImage } from "../firebase";
 import Axios from "../Axios";
 import { updateUser } from "../redux/actions/user";
@@ -110,6 +111,7 @@ export default () => {
                 <Route path="/wallet" component={Wallet} />
                 <Route path="/orders" component={Order} />
                 <Route path="/order/detail/:id" component={OrderDetail} />
+                <Route path="/change-password" component={ChangePassword} />
               </Switch>
             </div>
           </div>

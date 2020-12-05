@@ -305,7 +305,6 @@ export default () => {
 
   return (
     <>
-      <Header />
       <div className="container">
         <Steps current={current}>
           {steps.map((item) => (
@@ -315,18 +314,17 @@ export default () => {
         <div className="steps-content">{steps[current].content}</div>
         <div className="steps-action">
           {current < steps.length - 1 && current !== 3 && (
-            <Button type="primary" onClick={() => next()}>
-              Next
+            <Button className="btn-orange" onClick={() => next()}>
+              {current === 1 ? "Tiếp tục" : "Đặt hàng"}
             </Button>
           )}
-          {current === steps.length - 1 && (
-            <Button type="primary" onClick={() => {}}>
-              Done
-            </Button>
-          )}
-          {current > 0 && current < steps.length - 1 && (
-            <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
-              Previous
+          {current > 0 && current < steps.length - 1 && current !== 3 && (
+            <Button
+              className="btn-orange-outlined"
+              style={{ margin: "0 8px" }}
+              onClick={() => prev()}
+            >
+              Quay lại
             </Button>
           )}
         </div>

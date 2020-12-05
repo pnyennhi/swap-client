@@ -9,6 +9,7 @@ const OrderList = ({ orders }) => {
         const user = order.user;
         const status = order.status;
         const total = order.total;
+        const paymentMethod = order.paymentMethod;
         return (
           <OrderItem
             key={index}
@@ -18,6 +19,7 @@ const OrderList = ({ orders }) => {
             status={status}
             total={total}
             totalProducts={products.length}
+            paymentMethod={paymentMethod}
           />
         );
       })}
