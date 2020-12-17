@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Divider } from "antd";
+import { Divider, Tag } from "antd";
 import OrderItem from "../OrderItem";
-import Axios from "../../Axios";
+import { ORDER_STATUS } from "../../constants";
 
 const OrderDetail = ({ order }) => {
   // const [order, setOrder] = useState(null);
@@ -35,7 +35,15 @@ const OrderDetail = ({ order }) => {
             <h5 className="mb-4">Thông tin đơn hàng</h5>
             <div className="flex justify-content-between">
               <p>Mã đơn hàng: {order.id}</p>
-              <p>{order.status.status}</p>
+              <Tag
+                color={
+                  ORDER_STATUS.find(
+                    (item) => item.status === order.status.status
+                  )?.color
+                }
+              >
+                {order.status.status}
+              </Tag>
             </div>
             <p>Ngày đặt: {order.createdAt}</p>
             <Divider orientation="left">Thông tin người nhận</Divider>
@@ -55,12 +63,14 @@ const OrderDetail = ({ order }) => {
             <Divider />
             <div className="row justify-content-end align-items-center mb-1">
               <p className="mr-4 col-2 text-right">Phí vận chuyển:</p>
-              <p className="col-2 text-right">{order.shippingFee}</p>
+              <p className="col-2 text-right font-weight-600">
+                $ {order.shippingFee}
+              </p>
             </div>
             <div className="row justify-content-end align-items-center mb-3">
               <p className="mr-4 col-2 text-right">Tổng tiền:</p>
               <h4 className="col-2 text-orange font-weight-600 text-right">
-                {order.total}
+                $ {order.total}
               </h4>
             </div>
           </div>

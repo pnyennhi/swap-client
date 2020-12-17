@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "antd";
+import { Table, Tag } from "antd";
 import withdraw from "../../../assets/images/withdraw.png";
 import deposit from "../../../assets/images/deposit.png";
+import { TRANSACTION_STATUS } from "../../../constants";
 
 const TransactionTable = ({ transactions }) => {
   const columns = [
@@ -43,13 +44,18 @@ const TransactionTable = ({ transactions }) => {
     },
     {
       title: "Tình trạng",
-      dataIndex: "status",
       key: "status",
+      render: (text, record) => {
+        const status = TRANSACTION_STATUS.find(
+          (item) => item.value === record.status
+        );
+        return <Tag color={status.color}>{status.status}</Tag>;
+      },
     },
     {
       title: "Số tiền",
       key: "amount",
-      render: (text, record) => <p>$ {record.amount}</p>,
+      render: (text, record) => <strong>$ {record.amount}</strong>,
     },
   ];
 

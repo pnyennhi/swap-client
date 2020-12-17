@@ -3,10 +3,12 @@ import React, { useRef, useEffect } from "react";
 import { deleteUser } from "../../../redux/actions/user";
 import { resetWishlist } from "../../../redux/actions/wishlist";
 import { resetCart } from "../../../redux/actions/cart";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default ({ isLoggedIn, onToggle }) => {
   const ref = useRef();
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     document.addEventListener("click", handleClick);
@@ -44,6 +46,7 @@ export default ({ isLoggedIn, onToggle }) => {
         {isLoggedIn ? (
           <>
             <div className="switcher-currency">
+              <p className="text-left">Hi, {user.username}</p>
               <strong className="label switcher-label">
                 <span>Cá nhân</span>
               </strong>

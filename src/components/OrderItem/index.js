@@ -37,7 +37,9 @@ const OrderItem = ({ products, status, seller, hideStatus }) => {
               />
             </div>
             <div className="col-1 text-right">x{item.quantity}</div>
-            <div className="col-2 text-right">$ {item.price}</div>
+            <div className="col-2 text-right font-weight-600">
+              $ {item.price}
+            </div>
           </div>
         );
       })}

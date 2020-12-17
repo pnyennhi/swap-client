@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "antd";
+import { Table, Tag } from "antd";
 
 const RevenueTable = ({ orders }) => {
   const columns = [
@@ -17,18 +17,20 @@ const RevenueTable = ({ orders }) => {
       title: "Thời gian",
       key: "paidTime",
       render: (text, record) => (
-        <p>{record.updatedAt.toLocaleDateString("en-GB")}</p>
+        <p>{new Date(record.updatedAt).toLocaleDateString("en-GB")}</p>
       ),
     },
     {
       title: "Trạng thái",
       key: "status",
-      render: (text, record) => <p>{record.status.status}</p>,
+      render: (text, record) => (
+        <Tag color="#56c168">{record.status.status}</Tag>
+      ),
     },
     {
       title: "Số tiền",
-      dataIndex: "total",
       key: "total",
+      render: (text, record) => <strong>$ {record.total}</strong>,
     },
   ];
 

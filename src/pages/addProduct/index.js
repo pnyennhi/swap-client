@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Field } from "formik";
+import { Formik, Field, getActiveElement } from "formik";
 import { Form, Cascader, Select, Button, Space } from "antd";
 import * as Yup from "yup";
 import ImageUploader from "react-images-upload";
@@ -14,6 +14,7 @@ const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [conditions, setConditions] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [materials, setMaterials] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [pictures, setPictures] = useState([]);
   const [cover, setCover] = useState(null);
@@ -70,7 +71,7 @@ const AddProduct = () => {
         value: item.brand,
       }));
 
-      brands.push({ label: "Khác", value: "Khác" }, { label: "", value: "" });
+      brands.push({ label: "Khác", value: "Khác" });
 
       setBrands(brands);
     });
@@ -84,9 +85,23 @@ const AddProduct = () => {
         value: item.size,
       }));
 
-      brands.push({ label: "", value: "" });
+      sizes.push({ label: "khác", value: "Khác" });
 
       setSizes(sizes);
+    });
+
+    Axios.get("/materials").then((res) => {
+      const data = res.data;
+
+      const materials = data.map((item) => ({
+        ...item,
+        label: `${item.material}`,
+        value: item.material,
+      }));
+
+      materials.push({ label: "Khác", value: "Khác" });
+
+      setMaterials(materials);
     });
   }, []);
 
@@ -121,19 +136,25 @@ const AddProduct = () => {
   };
 
   const getCategory = (subId) => {
-    return categories.find((item) => {
+    const category = categories.find((item) => {
       const subs = item.children.map((child) => child.id);
       return subs.includes(subId);
     })?.value;
+
+    return category ?? null;
   };
 
   const handleAddProduct = (values, formikBag) => {
     console.log(values);
 
     Axios.post("/products", values)
-      .then((res) =>
-        Toast.success("Sản phẩm đã được gửi đến quản trị viên chờ duyệt", 2000)
-      )
+      .then((res) => {
+        Toast.success("Sản phẩm đã được gửi đến quản trị viên chờ duyệt", 2000);
+        formikBag.resetForm({ values: "" });
+        setCover(null);
+        setPictures([]);
+        window.scrollTo(0, 0);
+      })
       .catch((err) =>
         Toast.fail("Đã có lỗi xảy ra. Vui lòng thử lại sau", 2000)
       );
@@ -244,10 +265,14 @@ const AddProduct = () => {
 
               <Form.Item label="Danh mục">
                 <Cascader
-                  // value={[
-                  //   getCategory(values.subCategoryId),
-                  //   values.subCategoryId,
-                  // ]}
+                  value={
+                    getCategory(values.subCategoryId)
+                      ? [
+                          getCategory(values.subCategoryId),
+                          values.subCategoryId,
+                        ]
+                      : null
+                  }
                   placeholder=""
                   options={categories}
                   onChange={(value) => {
@@ -284,17 +309,18 @@ const AddProduct = () => {
                 ) : null}
               </Form.Item>
 
-              <Field
-                type="text"
-                name="material"
-                component={TextInput}
-                className={
-                  errors.material && touched.material
-                    ? "form-control error"
-                    : "form-control"
-                }
-                label="Chất liệu"
-              />
+              <Form.Item label="Chất liệu">
+                <Select
+                  name="material"
+                  value={values.material}
+                  options={materials}
+                  onChange={(value) => setFieldValue("material", value)}
+                  onBlur={handleBlur}
+                ></Select>
+                {errors.material && touched.material ? (
+                  <div className="input-feedback">{errors.material}</div>
+                ) : null}
+              </Form.Item>
 
               <Form.Item label="Thương hiệu">
                 <Select
@@ -308,6 +334,18 @@ const AddProduct = () => {
                   <div className="input-feedback">{errors.brand}</div>
                 ) : null}
               </Form.Item>
+
+              <Field
+                type="number"
+                name="weight"
+                component={TextInput}
+                className={
+                  errors.weight && touched.weight
+                    ? "form-control error"
+                    : "form-control"
+                }
+                label="Cân nặng"
+              />
 
               <Field
                 type="text"
@@ -354,7 +392,7 @@ const AddProduct = () => {
                 withIcon={true}
                 withPreview={true}
                 onChange={onDropCover}
-                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                imgExtension={[".jpg", ".gif", ".png", ".gif", "jpeg"]}
                 maxFileSize={5242880}
                 singleImage={true}
               />
@@ -366,7 +404,7 @@ const AddProduct = () => {
                 withIcon={true}
                 withPreview={true}
                 onChange={onDrop}
-                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                imgExtension={[".jpg", ".gif", ".png", ".gif", "jpeg"]}
                 maxFileSize={5242880}
               />
             </div>

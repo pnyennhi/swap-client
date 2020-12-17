@@ -12,3 +12,9 @@ export const DASHBOARD = [
   { type: "order", color: "#A09DFF" },
   { type: "completedOrder", color: "#90B360" },
 ];
+
+export const TRANSACTION_STATUS = [
+  { value: "pending", status: "Đang xử lý", color: "#faad14" },
+  { value: "success", status: "Thành công", color: "#56c168" },
+  { value: "fail", status: "Thất baị", color: "#cd201f" },
+];

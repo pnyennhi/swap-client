@@ -58,6 +58,11 @@ const ProductTable = ({ dataSource, onDelete }) => {
       sortDirections: ["descend", "ascend"],
     },
     {
+      title: "Status",
+      key: "status",
+      render: (text, record) => <p>{record.status.status}</p>,
+    },
+    {
       title: "Action",
       key: "action",
       render: (text, record) => (
@@ -65,6 +70,7 @@ const ProductTable = ({ dataSource, onDelete }) => {
           <Link to={`/seller/products/edit/${record.id}`} title="Sửa">
             <EditFilled style={{ color: "#f1b224", fontSize: "16px" }} />
           </Link>
+
           <a title="Xóa" onClick={() => onDelete(record.id)}>
             <MinusCircleOutlined style={{ color: "red", fontSize: "16px" }} />
           </a>

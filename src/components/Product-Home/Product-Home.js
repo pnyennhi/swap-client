@@ -65,7 +65,7 @@ const Product = ({ name, price, size, imageSrc, id }) => {
         <h4>
           <a href="single-product.html">{name}</a>
         </h4>
-        <p className="mb-0 size">Size: {size}</p>
+        <p className="mb-0 size font-size-12 color--light">Size: {size}</p>
         <ul className="prize">
           <li>$ {price}</li>
         </ul>

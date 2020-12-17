@@ -8,13 +8,13 @@ import Axios from "../../Axios";
 const { RangePicker } = DatePicker;
 
 const Revenue = () => {
-  const [sumDate, setSumDate] = useState({ start: null, end: null });
+  const [sumDate, setSumDate] = useState({ fromDate: null, toDate: null });
   const [revenue, setRevenue] = useState(null);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     let api = "";
-    if (sumDate.start && sumDate.end) {
+    if (sumDate.fromDate && sumDate.toDate) {
       api = `/orders/revenue?${queryString.stringify(sumDate)}`;
     } else {
       api = "/orders/revenue";
@@ -38,8 +38,8 @@ const Revenue = () => {
           <RangePicker
             onChange={(values, string) =>
               setSumDate({
-                start: string[1].replace(/-/g, "/"),
-                end: string[0].replace(/-/g, "/"),
+                fromDate: string[0].replace(/-/g, "/"),
+                toDate: string[1].replace(/-/g, "/"),
               })
             }
           />
@@ -49,7 +49,7 @@ const Revenue = () => {
           style={{ padding: "20px 0 10px 0px" }}
         >
           <MoneyBag size="30" />
-          <span className="amount">{revenue}</span>
+          <span className="amount">$ {revenue}</span>
         </div>
       </div>
 

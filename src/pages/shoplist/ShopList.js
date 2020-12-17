@@ -10,7 +10,7 @@ import { Select, InputNumber, Button, Tag } from "antd";
 import Axios from "axios";
 import { useParams, useLocation, Link, useHistory } from "react-router-dom";
 import query_string from "query-string";
-import _ from "lodash";
+import _, { filter } from "lodash";
 
 const LIMIT = 12;
 const { Option } = Select;
@@ -52,6 +52,7 @@ export default () => {
       .then((res) => {
         setProducts(res.data.data);
         setTotalItems(res.data.total);
+        window.scrollTo(0, 0);
       })
       .catch((err) => console.log(err));
   };
@@ -85,7 +86,7 @@ export default () => {
       .catch((err) => console.log(err));
 
     const uri =
-      category === "all"
+      category === "all" || !category
         ? `http://localhost:3001/sizes?isUnique=true`
         : `http://localhost:3001/sizes?isUnique=true&category=${category}`;
     Axios.get(uri)
@@ -98,18 +99,23 @@ export default () => {
   useEffect(() => {
     console.log(filters);
     fetchProducts();
-    const uri =
-      filters.categoryId?.length <= 0
-        ? `http://localhost:3001/sizes?isUnique=true`
-        : `http://localhost:3001/sizes?isUnique=true&${query_string.stringify({
-            categoryId: filters.categoryId,
-          })}`;
-    Axios.get(uri)
-      .then((res) => {
-        setSizes(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [currentPage, filters]);
+  }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    if (filters.categoryId?.length > 0) {
+      const uri = `http://localhost:3001/sizes?isUnique=true&${query_string.stringify(
+        {
+          categoryId: filters.categoryId,
+        }
+      )}`;
+      Axios.get(uri)
+        .then((res) => {
+          setSizes(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [filters]);
 
   useEffect(() => {
     const uri =

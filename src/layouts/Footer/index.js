@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default () => (
   <footer id="wn__footer" className="footer__area bg__cat--8 brown--color">
@@ -8,9 +9,13 @@ export default () => (
           <div className="col-lg-12">
             <div className="footer__widget footer__menu">
               <div className="ft__logo">
-                <a href="index.html">
-                  <img src="images/logo/3.png" alt="logo" />
-                </a>
+                <Link to="/">
+                  <img
+                    src={require("../../assets/images/swap-logo.png")}
+                    alt="logo"
+                    width="80px"
+                  />
+                </Link>
                 <p>
                   There are many variations of passages of Lorem Ipsum
                   available, but the majority have suffered duskam alteration

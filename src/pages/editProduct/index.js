@@ -102,13 +102,10 @@ const AddProduct = ({ id }) => {
       .then((res) =>
         Toast.success("Sản phẩm đã được gửi đến quản trị viên chờ duyệt", 2000)
       )
-      .catch((err) =>
-        Toast.fail("Đã có lỗi xảy ra. Vui lòng thử lại sau", 2000)
-      );
+      .catch((err) => Toast.fail(err.response.data, 2000));
   };
 
   const handleSubmit = async (values, formikBag) => {
-    alert(1);
     if (cover?.length <= 0) {
       setCoverValidate("Bạn phải upload ít nhất 1 ảnh bìa");
       formikBag.setSubmitting(false);
@@ -138,7 +135,7 @@ const AddProduct = ({ id }) => {
       handleEditProduct(values, formikBag);
     } catch (err) {
       console.log(err);
-      Toast.fail("Đã có lối xảy ra. Vui lòng thử lại sau");
+      Toast.fail(err.response.data);
       formikBag.setSubmitting(false);
       return;
     }

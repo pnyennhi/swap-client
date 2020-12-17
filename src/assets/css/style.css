@@ -8707,15 +8707,15 @@ td.ant-picker-cell {
 .seller .ant-btn,
 .seller .ant-pagination,
 .seller p {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .seller .product-name a {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .seller .form-control {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 /* .seller-order-list,
@@ -8882,4 +8882,22 @@ td.ant-picker-cell {
 .ant-tabs-tab {
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.revenue-table .ant-table-tbody > tr > td,
+.revenue-table .ant-table-thead > tr > th,
+.transaction-table .ant-table-tbody > tr > td,
+.transaction-table .ant-table-thead > tr > th {
+  border-bottom: 1px solid #ececec;
+}
+
+.seller .ant-tag {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-radius: 5px;
+}
+
+.col-20 {
+  width: 20%;
+  padding: 0 15px;
 }
