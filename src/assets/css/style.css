@@ -8209,6 +8209,7 @@ button:focus {
 .content {
   flex-grow: 1;
   padding: 30px;
+  width: calc(100% - 230px);
 }
 
 .ant-picker-content th {
@@ -8900,4 +8901,35 @@ td.ant-picker-cell {
 .col-20 {
   width: 20%;
   padding: 0 15px;
+}
+
+.ant-tabs-tab {
+  font-size: 12px;
+}
+
+.ant-tabs > .ant-tabs-nav .ant-tabs-nav-more,
+.ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-more {
+  background-color: #fff;
+}
+
+.fileContainer .uploadPictureContainer {
+  margin: 10px !important;
+  padding: 0 !important;
+  height: 120px !important;
+  width: 100px !important;
+}
+
+.fileContainer .uploadPictureContainer img.uploadPicture {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.fileContainer .deleteImage {
+  color: rgb(126, 113, 113);
+  background: #a7a7a7 !important;
+  font-size: 13px !important;
+  line-height: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
 }

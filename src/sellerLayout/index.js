@@ -17,14 +17,20 @@ const SellerLayout = () => {
 
   return (
     <>
-      <div className="flex seller">
+      <div className="seller">
         <Sidebar
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}
         />
         <div style={{ flexGrow: 1 }}>
           <Header style={{ marginLeft: collapsed ? 80 : 250 }} />
-          <div className="content" style={{ marginLeft: collapsed ? 80 : 250 }}>
+          <div
+            className="content"
+            style={{
+              marginLeft: collapsed ? 80 : 250,
+              width: "calc(100% - 250px)",
+            }}
+          >
             {/* <Header /> */}
             <Switch>
               <Redirect exact from="/seller" to="/seller/dashboard" />

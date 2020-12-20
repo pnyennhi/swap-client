@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Button, Tag } from "antd";
+import { Divider, Button, Tag, Timeline } from "antd";
+import moment from "moment";
 import { useParams } from "react-router-dom";
 import OrderItem from "../../components/OrderItem";
 import Axios from "../../Axios";
@@ -77,6 +78,16 @@ const OrderDetail = () => {
               {order.total}
             </h4>
           </div>
+          <Divider orientation="left">Lịch sử giao hàng</Divider>
+          <Timeline mode="left">
+            {order.orderHistory.map((item) => (
+              <Timeline.Item
+                label={moment(item.createdAt).format("YYYY-MM-DD HH:mm")}
+              >
+                {item.detail}
+              </Timeline.Item>
+            ))}
+          </Timeline>
           {order.statusId === 1 && (
             <div className="flex justify-content-end">
               <Button

@@ -57,3 +57,32 @@ export const uploadProductImage = (image) => {
     );
   });
 };
+
+export const uploadRefundImage = (image) => {
+  return new Promise((resolve, reject) => {
+    const uploadTask = storage.ref(`refund/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // progrss function ....
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+      },
+      (error) => {
+        // error function ....
+        reject(error);
+      },
+      () => {
+        // complete function ....
+        storage
+          .ref("refund")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            resolve(url);
+          });
+      }
+    );
+  });
+};
